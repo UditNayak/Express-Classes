@@ -2,6 +2,17 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
+app.use(customLogger);
+
+
+// Custom logger middleware
+function customLogger(req, res, next) {
+    console.log(
+        `Method: ${req.method}, IP: ${req.ip}, Hostname: ${req.hostname}, Date: ${new Date()}`
+    );
+    next();
+};
+
 
 let courses = [
   { id: 1, name: "course1" },
