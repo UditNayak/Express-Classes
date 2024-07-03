@@ -4,6 +4,9 @@ const path = require("path");
 const app = express();
 
 app.use(express.json());
+app.use(customLogger);
+
+const coursesFilePath = path.join(__dirname, 'courses.json');
 
 // Custom logger middleware
 function customLogger(req, res, next) {
@@ -12,9 +15,6 @@ function customLogger(req, res, next) {
     );
     next();
 }
-app.use(customLogger);
-
-const coursesFilePath = path.join(__dirname, 'courses.json');
 
 // Utility function to read courses from the file
 function readCoursesFromFile() {
